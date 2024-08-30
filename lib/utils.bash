@@ -41,11 +41,27 @@ download_release() {
 	version="$1"
 	filename="$2"
 
-	# TODO: Adapt the release URL convention for hostess
-	url="$GH_REPO/archive/v${version}.tar.gz"
+	#v0.5.2/hostess_linux_amd64
+	os=$(uname -s)
+	arch=$(uname -m)
+
+	if [ "$os" == "Linux" ]; then
+		if [ "$arch" == "x86_64" ]; then
+			tool= "${TOOL_NAME}_linux_amd64"
+		elif [[ "$arch" == arm* ]]; then
+			tool= "${TOOL_NAME}_linux_arm"
+		fi
+	elif [ "$os" == "Darwin" ]; then
+		tool= "${TOOL_NAME}_macos_amd64"
+	elif [[ "$os" == CYGWIN* || "$os" == MINGW* ]]; then
+		tool= "${TOOL_NAME}_windows_amd64.exe"
+	fi
+
+	url="$GH_REPO/releases/download/v${version}/${tool}"
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
+	
 }
 
 install_version() {
