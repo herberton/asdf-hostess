@@ -54,7 +54,7 @@ download_release() {
 			tool="${TOOL_NAME}_linux_arm"
 		fi
 	elif [ "$os" == "Darwin" ]; then
-		tool= "${TOOL_NAME}_macos_amd64"
+		tool="${TOOL_NAME}_macos_amd64"
 	elif [[ "$os" == CYGWIN* || "$os" == MINGW* ]]; then
 		tool="${TOOL_NAME}_windows_amd64.exe"
 	fi
