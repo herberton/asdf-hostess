@@ -21,7 +21,3 @@ download_release "$ASDF_INSTALL_VERSION" "$release_file"
 
 # Remove the tar.gz file since we don't need to keep it
 # rm "$release_file"
-
-echo "$release_file"
-ls -lah "$release_file"
-ls -lah "$ASDF_DOWNLOAD_PATH"
