@@ -45,6 +45,8 @@ download_release() {
 	os=$(uname -s)
 	arch=$(uname -m)
 
+	local tool
+
 	if [ "$os" == "Linux" ]; then
 		if [ "$arch" == "x86_64" ]; then
 			tool="${TOOL_NAME}_linux_amd64"
